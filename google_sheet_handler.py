@@ -20,4 +20,3 @@ values = result.get('values', [])
 
 # Print the data to the console
 print(values)
-
