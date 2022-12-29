@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Däck Hotell</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <form  action="/add" method="POST">
+        <div class="input_div">
+            <label for="shelf">Hylla</label>
+            <input type="text" name="shelf" id="shelf" minlength="2" maxlength="4" class="gradient-border" >
+        </div>
+        <div class="input_div">
+            <label for="licensePlate">Registreringsnummer</label>
+            <input type="text" name="license_plate" id="license_plate"  minlength="6" maxlength="7" class="gradient-border"> 
+        </div>
+        <button type="submit">Skicka</button>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            {% for category, message in messages %}
+                <div class="{{ category }}"> {{ message }} </div>
+            {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </form>
+
+    <script>
+        // Force uppercase on license plate and also shelf 
+        document.getElementById("license_plate").addEventListener("keyup", function() {
+            this.value = this.value.toUpperCase();
+        });
+        document.getElementById("shelf").addEventListener("keyup", function() {
+            this.value = this.value.toUpperCase();
+        });
+
+    </script>
+
+</body>
+</html>
